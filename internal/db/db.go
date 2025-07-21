@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"os"
 	"time"
 
 	"marketplace/internal/config"
@@ -15,13 +16,7 @@ import (
 
 func NewDatabase(cfg *config.Config) (*sql.DB, error) {
 
-	url := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable",
-		cfg.Database.User,
-		cfg.Database.Password,
-		cfg.Database.Host,
-		cfg.Database.Port,
-		cfg.Database.Dbname,
-	)
+	url := os.Getenv("DATABASE_URL")
 
 	dbConfig, err := pgx.ParseConfig(url)
 	if err != nil {
