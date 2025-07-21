@@ -57,7 +57,7 @@ func (a *App) Run() error {
 	h := handlers.NewHandlers(ss)
 
 	h.SetAPI(e, &jwtUtils)
-	e.Logger.Fatal(e.Start(cfg.Server.Port))
+	e.Logger.Fatal(e.Start(":" + cfg.Server.Port))
 
 	logger.Logger.Infof("server successfully started on %s port", cfg.Server.Port)
 

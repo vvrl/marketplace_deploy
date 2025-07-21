@@ -14,8 +14,8 @@ RUN go build -o ./bin/marketplace cmd/marketplace/main.go
 FROM alpine
 
 COPY --from=builder /app/bin/marketplace /
-COPY --from=builder configs/config.yaml configs/config.yaml
-COPY --from=builder internal/db/migrations internal/db/migrations
+COPY configs/config.yaml configs/config.yaml
+COPY internal/db/migrations internal/db/migrations
 
 EXPOSE 8080
 
