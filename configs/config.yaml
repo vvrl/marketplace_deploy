@@ -1,0 +1,19 @@
+server:
+  port: ":8080"
+
+logger:
+  level: "debug"
+
+database:
+  driver: "postgres"
+  host: "market-psql"
+  port: 5432
+  user: "market_user"
+  password: "market_password"
+  dbname: "market_db"
+  maxAttempts: 20
+
+jwt:
+  key: "secret_key_for_marketplace"
+  lifetime: 5
+
