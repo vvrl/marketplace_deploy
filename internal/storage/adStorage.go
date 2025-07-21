@@ -54,7 +54,7 @@ func (s *adStorage) GetAdList(ctx context.Context, params models.ForListAdsParam
 	}
 
 	query := fmt.Sprintf(`
-	SELECT a.title, a.text, a.image_url, a.price, u.id AS author_id
+	SELECT a.id, a.title, a.text, a.image_url, a.price, u.id AS author_id
 	FROM ads a
 	JOIN users u ON a.user_id = u.id
 	WHERE a.price BETWEEN $1 AND $2
@@ -82,6 +82,7 @@ func (s *adStorage) GetAdList(ctx context.Context, params models.ForListAdsParam
 	for rows.Next() {
 		temp := &models.Advertisement{}
 		err = rows.Scan(
+			&temp.ID,
 			&temp.Title,
 			&temp.Text,
 			&temp.ImageURL,
